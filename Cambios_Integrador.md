@@ -226,4 +226,6 @@ Se revisó el PDF existente contra la consigna, la rúbrica y el código actual 
 - [ ] Reemplazar **"Alumno 1 — Alumno 2"** en la carátula por nombres y legajos reales.
 - [ ] Insertar **capturas de pantalla reales** en la sección 2.3.
 - [ ] Completar la **URL del video** en la sección 5 y en el `README.md`.
+- [x] Actualizar nombres de integrantes y fecha en `Informe_TPI_Paises.pdf`.
+- [x] Corregir el índice del PDF para que refleje las secciones y páginas reales.
 
