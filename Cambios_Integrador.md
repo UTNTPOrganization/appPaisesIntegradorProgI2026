@@ -166,3 +166,15 @@ Documentar las mejoras aplicadas al código original, especialmente:
 - Validación anti-duplicados al agregar países.
 - Control de rangos mínimo/máximo en filtros.
 - Función `mostrar_pais_formateado` para salida legible.
+
+### 13. Mejora de comentarios en `Integrador.py`
+* **Motivo**: La rúbrica valora legibilidad y comentarios; conviene documentar la lógica no obvia dentro de cada función, no solo los docstrings.
+* **Solución aplicada**:
+  - Encabezado general del archivo con propósito del sistema.
+  - Comentarios en `cargar_paises`: salto de encabezado, filas inválidas, normalización de continentes, creación de CSV vacío.
+  - Comentarios en persistencia: diferencia entre `guardar_pais_csv` (append) y `guardar_todos_los_paises_csv` (sobrescritura).
+  - Comentarios en validaciones: nombres compuestos, captura de `ValueError`, estandarización de continentes.
+  - Comentarios en operaciones CRUD: anti-duplicados, actualización parcial, búsqueda parcial, bandera `encontrados`.
+  - Comentarios en filtros y ordenamiento: rangos inclusivos, `reverse`, claves `lambda`, `sorted()` sin mutar la lista.
+  - Comentarios en estadísticas: formato numérico local y conteo por continente con diccionario auxiliar.
+  - Comentarios en el bloque principal: carga inicial y bucle del menú.
