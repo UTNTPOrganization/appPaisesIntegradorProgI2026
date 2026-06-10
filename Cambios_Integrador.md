@@ -45,16 +45,17 @@ Todas las soluciones se desarrollaron empleando **conceptos básicos de manejo d
   - Al realizar una actualización, el sistema primero muestra en pantalla una ficha formateada con los datos actuales del país antes de solicitar los nuevos valores numéricos.
 
 ### 7. Formato Estético de Consola (`mostrar_pais_formateado`)
-* **Problema anterior**: Al realizar búsquedas, ordenamientos o filtros, el programa imprimía en pantalla los objetos diccionarios tal y como Python los almacena en memoria (ej. `{'nombre': 'Argentina', 'poblacion': 45376763, 'superficie': 2780400, 'continente': 'América'}`), lo cual resulta poco profesional y difícil de leer.
+* **Problema anterior**: Al realizar búsquedas, ordenamientos o filtros, el programa imprimía en pantalla los objetos diccionarios tal y como Python los almacena en memoria (ej. `{'nombre': 'Argentina', 'poblacion': 45376763, 'superficie': 2780400, 'continente': 'América'}`), lo cual dificultaba la lectura.
 * **Solución aplicada**:
   - Se implementó la función `mostrar_pais_formateado(pais)`, la cual se encarga de presentar la información de cada país estructurada en columnas alineadas.
-  - Se formatearon las cifras numéricas grandes agregando puntos como separadores de miles (ej. `45.376.763` en lugar de `45376763`), mejorando drásticamente la legibilidad de la información.
+  - Se formatearon las cifras numéricas grandes agregando puntos como separadores de miles (ej. `45.376.763` en lugar de `45376763`), mejorando la legibilidad de la información.
 
 ### 8. Ordenamiento Case-Insensitive (`ordenar_paises`)
 * **Problema anterior**: Al ordenar países por nombre de forma alfabética, Python priorizaba las letras mayúsculas por encima de las minúsculas según la codificación ASCII (provocando que `"alemania"` se ordenara después de `"Brasil"`).
 * **Solución aplicada**:
-  - Se implementó una clave alfabética insensible a la capitalización mediante `lambda x: x["nombre"].lower()`.
+  - Se implementó ordenamiento por **método de burbuja** con bucles `for` anidados, comparando nombres con `.lower()` para no distinguir mayúsculas.
   - Se agregó validación al orden ("A" para ascendente y "D" para descendente), impidiendo que opciones inválidas rompan el flujo de ejecución.
+  - Se copia la lista `paises` a `ordenados` antes de ordenar, para no modificar los datos originales en memoria.
 
 ### 9. Modularización y Documentación Completa
 * **Problema anterior**: La rúbrica penaliza los códigos que no contienen comentarios o docstrings explicando la finalidad de las funciones.
@@ -86,7 +87,7 @@ Revisión realizada sobre:
 - `Integrador Programación 1 2 C 2025.pdf`
 - `Integrador.py`
 - `paises.csv`
-- `Informe_TPI_Paises.pdf` *(no encontrado en el repositorio local)*
+- `Informe_TPI_Paises.pdf` *(informe del compañero, editado en esta revisión)*
 
 ### Estado del código (`Integrador.py`) — Cumple los requisitos mínimos
 
@@ -113,7 +114,7 @@ Revisión realizada sobre:
 | Entregable | Estado | Acción requerida |
 |------------|--------|------------------|
 | `README.md` | ✅ Creado | Completar nombres de integrantes y links al video/PDF |
-| `Informe_TPI_Paises.pdf` | ❌ No está en el repo | Crear y subir según estructura indicada abajo |
+| `Informe_TPI_Paises.pdf` | ✅ Editado | Completar integrantes, capturas reales y URL del video |
 | Video 10–15 min | ⚠️ Pendiente | Ambos integrantes a cámara al inicio; mostrar todos los flujos |
 | Repositorio público | ⚠️ Verificar | Debe ser accesible con CSV incluido |
 | `.zip` de entrega | ⚠️ Pendiente | Código fuente + PDF del informe |
@@ -138,8 +139,8 @@ El archivo **no se encontró** en la carpeta del proyecto. Según la consigna y 
      - Diccionarios → cada país como `{"nombre": ..., "poblacion": ..., ...}`
      - Funciones → modularización (`agregar_pais`, `filtrar_poblacion`, etc.)
      - Condicionales → menús, validaciones
-     - Ordenamientos → `sorted()` con `lambda`
-     - Estadísticas básicas → `max`, `min`, `sum`, promedios
+     - Ordenamientos → método de burbuja con bucles `for`
+     - Estadísticas básicas → recorrido con `for`, acumuladores y promedios
      - Archivos CSV → `cargar_paises`, `guardar_pais_csv`
    - Mínimo **3 fuentes** citadas correctamente (APA básico): Python Docs, material de cátedra, artículo técnico.
 
@@ -175,6 +176,54 @@ Documentar las mejoras aplicadas al código original, especialmente:
   - Comentarios en persistencia: diferencia entre `guardar_pais_csv` (append) y `guardar_todos_los_paises_csv` (sobrescritura).
   - Comentarios en validaciones: nombres compuestos, captura de `ValueError`, estandarización de continentes.
   - Comentarios en operaciones CRUD: anti-duplicados, actualización parcial, búsqueda parcial, bandera `encontrados`.
-  - Comentarios en filtros y ordenamiento: rangos inclusivos, `reverse`, claves `lambda`, `sorted()` sin mutar la lista.
+  - Comentarios en filtros y ordenamiento: rangos inclusivos, burbuja sin mutar la lista original.
   - Comentarios en estadísticas: formato numérico local y conteo por continente con diccionario auxiliar.
   - Comentarios en el bloque principal: carga inicial y bucle del menú.
+
+### 14. Adecuación al programa de 1er año UTN (sin conceptos avanzados)
+* **Motivo**: El código debía usar solo contenidos vistos en Programación 1 — 1er cuatrimestre: funciones, listas, diccionarios, condicionales, bucles, archivos y estructuras básicas. No se vio `lambda` ni funciones de ordenamiento avanzadas.
+* **Solución aplicada**:
+  - **`ordenar_paises`**: se reemplazó `sorted()` con `lambda` por **ordenamiento de burbuja** con `for` anidados.
+  - **`mostrar_estadisticas`**: se reemplazó `max()`, `min()` y `sum()` con generadores por recorridos `for` y variables acumuladoras.
+  - **Conteo por continente**: se reemplazó `.get()` por `if continente in continentes` / `else`.
+  - **`cargar_paises`**: se reemplazó `CONTINENTES_MAPA.get()` por `if` / `else`; `next(archivo)` por `readline()`.
+  - **Listado de continentes**: se ordenan alfabéticamente con burbuja en lugar de `sorted(continentes.items())`.
+
+### 15. Revisión y edición de `Informe_TPI_Paises.pdf` (informe del compañero)
+
+Se revisó el PDF existente contra la consigna, la rúbrica y el código actual de `Integrador.py`. **No se generó un informe nuevo**: se editó el archivo original del compañero. Copia de seguridad: `Informe_TPI_Paises_backup.pdf`.
+
+#### Hallazgos de la revisión (antes de editar)
+
+| Requisito de la consigna | Estado inicial |
+|--------------------------|----------------|
+| Carátula con datos institucionales | ✅ Presente (faltan nombres reales de integrantes) |
+| Índice con páginas | ⚠️ Presente pero incompleto |
+| Marco teórico (7 conceptos) | ⚠️ Presente pero con `lambda`, `sorted()`, `max/min` con key |
+| Diagrama de flujo | ✅ Presente (pág. 9–10) |
+| Capturas de pantalla | ❌ Faltaban |
+| Dificultades y conclusiones | ❌ Faltaban |
+| Bibliografía (≥3 fuentes) | ✅ Presente |
+| Links repositorio y video | ❌ Faltaban |
+| Alineación con código 1er año UTN | ❌ Usaba conceptos no vistos (`lambda`, etc.) |
+
+#### Cambios aplicados al PDF
+
+1. **Marco teórico — Listas (1.1)**: se quitó comprensiones y `sorted()`; se dejó `append()` y `for`.
+2. **Marco teórico — Diccionarios (1.2)**: ejemplo con `"América"` (con tilde).
+3. **Marco teórico — Ordenamientos (1.5)**: se reemplazó `sorted()` + `lambda` por **método de burbuja**, alineado con `Integrador.py`.
+4. **Marco teórico — Estadísticas (1.6)**: se reemplazó `max()`, `min()`, `sum()` y `.get()` por `for` y acumuladores.
+5. **Marco teórico — CSV (1.7)**: se actualizó a `readline()`, `try/except`, tildes y funciones de guardado correctas.
+6. **Decisiones técnicas (2.1)**: tabla corregida (`guardar_todos_los_paises_csv()`, burbuja, acumuladores).
+7. **Índice (pág. 2)**: actualizado con secciones nuevas.
+8. **Sección 2.3 Capturas (pág. 11)**: agregada con placeholders para imágenes reales.
+9. **Sección 3 Dificultades y Conclusiones (pág. 12)**: agregada (exigida por consigna).
+10. **Bibliografía (pág. 13)**: reescrita sin referencias a `sorted()`/`lambda`.
+11. **Sección 5 Enlaces (pág. 14)**: link al repo; placeholder para video.
+
+#### Pendientes manuales antes de entregar
+
+- [ ] Reemplazar **"Alumno 1 — Alumno 2"** en la carátula por nombres y legajos reales.
+- [ ] Insertar **capturas de pantalla reales** en la sección 2.3.
+- [ ] Completar la **URL del video** en la sección 5 y en el `README.md`.
+

@@ -41,7 +41,7 @@ def cargar_paises():
     """
     try:
         with open("paises.csv", "r", encoding="utf-8") as archivo:
-            next(archivo)  # Salta la fila de encabezado (nombre,poblacion,superficie,continente)
+            archivo.readline()  # Salta la fila de encabezado (nombre,poblacion,superficie,continente)
             for linea in archivo:
                 linea_limpia = linea.strip()
                 if not linea_limpia:
@@ -52,7 +52,10 @@ def cargar_paises():
                 try:
                     continente_raw = datos[3].strip().lower()
                     # Si el continente no está en el mapa, se capitaliza la primera letra
-                    continente_normalizado = CONTINENTES_MAPA.get(continente_raw, continente_raw.capitalize())
+                    if continente_raw in CONTINENTES_MAPA:
+                        continente_normalizado = CONTINENTES_MAPA[continente_raw]
+                    else:
+                        continente_normalizado = continente_raw.capitalize()
                     
                     pais = {
                         "nombre": datos[0].strip(),
@@ -374,18 +377,39 @@ def ordenar_paises():
             break
         print("Error: Ingrese 'A' o 'D'.")
 
-    reverse = (orden == "D")  # True = descendente, False = ascendente
+    # Copia la lista para no modificar la original en memoria
+    ordenados = []
+    for pais in paises:
+        ordenados.append(pais)
 
-    # Se define la clave de orden según el criterio elegido
-    if opcion == "1":
-        clave = lambda x: x["nombre"].lower()  # Alfabético sin distinguir mayúsculas
-    elif opcion == "2":
-        clave = lambda x: x["poblacion"]
-    else:
-        clave = lambda x: x["superficie"]
+    # Ordenamiento por burbuja según criterio y sentido elegidos
+    cantidad = len(ordenados)
+    for i in range(cantidad):
+        for j in range(0, cantidad - i - 1):
+            intercambiar = False
 
-    # sorted() no modifica la lista original; devuelve una copia ordenada
-    ordenados = sorted(paises, key=clave, reverse=reverse)
+            if opcion == "1":
+                nombre_actual = ordenados[j]["nombre"].lower()
+                nombre_siguiente = ordenados[j + 1]["nombre"].lower()
+                if orden == "A":
+                    intercambiar = nombre_actual > nombre_siguiente
+                else:
+                    intercambiar = nombre_actual < nombre_siguiente
+            elif opcion == "2":
+                if orden == "A":
+                    intercambiar = ordenados[j]["poblacion"] > ordenados[j + 1]["poblacion"]
+                else:
+                    intercambiar = ordenados[j]["poblacion"] < ordenados[j + 1]["poblacion"]
+            else:
+                if orden == "A":
+                    intercambiar = ordenados[j]["superficie"] > ordenados[j + 1]["superficie"]
+                else:
+                    intercambiar = ordenados[j]["superficie"] < ordenados[j + 1]["superficie"]
+
+            if intercambiar:
+                auxiliar = ordenados[j]
+                ordenados[j] = ordenados[j + 1]
+                ordenados[j + 1] = auxiliar
 
     print("\nPaíses ordenados:")
     for pais in ordenados:
@@ -402,18 +426,31 @@ def mostrar_estadisticas():
         print("No hay países cargados.")
         return
 
-    # País con mayor y menor población del dataset cargado
-    mayor = max(paises, key=lambda x: x["poblacion"])
-    menor = min(paises, key=lambda x: x["poblacion"])
+    # País con mayor y menor población recorriendo la lista con un for
+    mayor = paises[0]
+    menor = paises[0]
+    total_poblacion = 0
+    total_superficie = 0
 
-    promedio_poblacion = sum(pais["poblacion"] for pais in paises) / len(paises)
-    promedio_superficie = sum(pais["superficie"] for pais in paises) / len(paises)
+    for pais in paises:
+        if pais["poblacion"] > mayor["poblacion"]:
+            mayor = pais
+        if pais["poblacion"] < menor["poblacion"]:
+            menor = pais
+        total_poblacion = total_poblacion + pais["poblacion"]
+        total_superficie = total_superficie + pais["superficie"]
+
+    promedio_poblacion = total_poblacion / len(paises)
+    promedio_superficie = total_superficie / len(paises)
 
     # Conteo de países por continente usando un diccionario auxiliar
     continentes = {}
     for pais in paises:
         continente = pais["continente"]
-        continentes[continente] = continentes.get(continente, 0) + 1
+        if continente in continentes:
+            continentes[continente] = continentes[continente] + 1
+        else:
+            continentes[continente] = 1
 
     print("\n--- ESTADISTICAS ---")
 
@@ -429,9 +466,22 @@ def mostrar_estadisticas():
     print(f"Promedio población:  {prom_pob} hab.")
     print(f"Promedio superficie: {prom_sup} km²")
 
+    # Lista de nombres de continentes para ordenarlos alfabéticamente
+    lista_continentes = []
+    for continente in continentes:
+        lista_continentes.append(continente)
+
+    cantidad_continentes = len(lista_continentes)
+    for i in range(cantidad_continentes):
+        for j in range(0, cantidad_continentes - i - 1):
+            if lista_continentes[j] > lista_continentes[j + 1]:
+                auxiliar = lista_continentes[j]
+                lista_continentes[j] = lista_continentes[j + 1]
+                lista_continentes[j + 1] = auxiliar
+
     print("\nCantidad por continente:")
-    for continente, cantidad in sorted(continentes.items()):
-        print(f"- {continente}: {cantidad}")
+    for continente in lista_continentes:
+        print(f"- {continente}: {continentes[continente]}")
 
 
 # =====================================
