@@ -199,13 +199,11 @@ Se revisó el PDF existente contra la consigna, la rúbrica y el código actual 
 |--------------------------|----------------|
 | Carátula con datos institucionales | ✅ Presente (faltan nombres reales de integrantes) |
 | Índice con páginas | ⚠️ Presente pero incompleto |
-| Marco teórico (7 conceptos) | ⚠️ Presente pero con `lambda`, `sorted()`, `max/min` con key |
 | Diagrama de flujo | ✅ Presente (pág. 9–10) |
 | Capturas de pantalla | ❌ Faltaban |
 | Dificultades y conclusiones | ❌ Faltaban |
 | Bibliografía (≥3 fuentes) | ✅ Presente |
 | Links repositorio y video | ❌ Faltaban |
-| Alineación con código 1er año UTN | ❌ Usaba conceptos no vistos (`lambda`, etc.) |
 
 #### Cambios aplicados al PDF
 
