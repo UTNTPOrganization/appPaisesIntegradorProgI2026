@@ -46,7 +46,7 @@ Integrador/
 |---------|--------|
 | Video demostrativo (10–15 min, público) | `[PENDIENTE — pegar URL de YouTube/Drive]` |
 | Informe PDF | `[PENDIENTE — enlace o archivo en raíz del repo]` |
-| Repositorio GitHub | https://github.com/alevanfof/appPaisesIntegradorProgI2026 |
+| Repositorio GitHub | https://github.com/UTNTPOrganization/appPaisesIntegradorProgI2026 |
 
 ---
 
