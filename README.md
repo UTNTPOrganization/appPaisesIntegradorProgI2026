@@ -18,17 +18,27 @@ Aplicación en consola desarrollada en **Python 3** para gestionar información 
 
 ---
 
-## Estructura del repositorio (sugerida)
+## Estructura del repositorio (modularizada)
 
 ```
 Integrador/
-├── Integrador.py              # Código principal del sistema
+├── main.py                    # Punto de entrada: menú principal y bucle
+├── datos.py                   # Gestión de carga/persistencia CSV
+├── validaciones.py            # Funciones de validación de entrada
+├── operaciones.py             # Operaciones: agregar, buscar, filtrar, etc.
 ├── paises.csv                 # Dataset base de países
 ├── README.md                  # Este archivo (obligatorio)
 ├── Cambios_Integrador.md      # Registro de mejoras aplicadas al código
 ├── Informe_TPI_Paises.pdf     # Informe académico (obligatorio en el .zip)
 └── .gitignore                 # (opcional) para excluir __pycache__/
 ```
+
+### Descripción de módulos
+
+- **main.py**: Punto de entrada de la aplicación. Contiene el menú principal y el bucle de ejecución.
+- **datos.py**: Gestión de persistencia de datos. Carga el CSV, normaliza continentes y guarda cambios.
+- **validaciones.py**: Funciones reutilizables para validar textos, números y continentes.
+- **operaciones.py**: Todas las operaciones de negocio (agregar, actualizar, buscar, filtrar, ordenar, estadísticas).
 
 ### Enlaces obligatorios (completar antes de entregar)
 
@@ -54,10 +64,10 @@ Integrador/
 3. Ejecutar:
 
 ```bash
-python Integrador.py
+python main.py
 ```
 
-4. El programa carga automáticamente `paises.csv` y muestra el menú principal.
+4. El programa carga automáticamente `paises.csv` desde el archivo CSV y muestra el menú principal.
 
 ---
 
@@ -224,12 +234,12 @@ git push https://USUARIO:TOKEN@github.com/alevanfof/appPaisesIntegradorProgI2026
 ## Checklist de entrega (consigna TPI)
 
 - [ ] Repositorio **público** en GitHub
-- [ ] `Integrador.py` ejecutable sin errores
+- [ ] `main.py` ejecutable sin errores (junto con `datos.py`, `validaciones.py`, `operaciones.py`)
 - [ ] `paises.csv` incluido en el repositorio
 - [ ] `README.md` completo (integrantes, instrucciones, ejemplos, links)
 - [ ] `Informe_TPI_Paises.pdf` con carátula, índice, marco teórico, diagrama de flujo, capturas, conclusiones y bibliografía
 - [ ] Video de 10–15 min con ambos integrantes a cámara al inicio
-- [ ] Archivo `.zip` con código fuente + PDF del informe
+- [ ] Archivo `.zip` con código fuente modularizado + PDF del informe
 
 ---
 
