@@ -9,55 +9,57 @@ Aplicación en consola desarrollada en **Python 3** para gestionar información 
 
 ## Integrantes
 
-| Nombre | Legajo / Rol |
-|--------|--------------|
-| [Alejandro Fernández 1] | [Legajo] |
-| [Gallardo Josue 2] | [Legajo] |
+| Nombre | Legajo |
+|----------|----------|
+| Alejandro Fernández | [Legajo] |
+| Josué Gallardo | [Legajo] |
 
-> Completar con los datos reales del equipo antes de la entrega.
+> Completar los legajos antes de la entrega.
 
 ---
 
-## Estructura del repositorio (modularizada)
+## Estructura del repositorio
 
-```
+```text
 Integrador/
-├── main.py                    # Punto de entrada: menú principal y bucle
-├── datos.py                   # Gestión de carga/persistencia CSV
-├── validaciones.py            # Funciones de validación de entrada
-├── operaciones.py             # Operaciones: agregar, buscar, filtrar, etc.
-├── paises.csv                 # Dataset base de países
-├── README.md                  # Este archivo (obligatorio)
-├── Cambios_Integrador.md      # Registro de mejoras aplicadas al código
-├── Informe_TPI_Paises.pdf     # Informe académico (obligatorio en el .zip)
-└── .gitignore                 # (opcional) para excluir __pycache__/
+├── main.py                    # Punto de entrada y menú principal
+├── datos.py                   # Carga y persistencia de datos CSV
+├── validaciones.py            # Funciones de validación
+├── operaciones.py             # Funcionalidades del sistema
+├── paises.csv                 # Base de datos de países
+├── README.md                  # Documentación del proyecto
+├── Cambios_Integrador.md      # Registro de mejoras realizadas
+├── Informe_TPI_Paises.pdf     # Informe académico
+└── .gitignore                 # Exclusión de archivos temporales
 ```
 
 ### Descripción de módulos
 
-- **main.py**: Punto de entrada de la aplicación. Contiene el menú principal y el bucle de ejecución.
-- **datos.py**: Gestión de persistencia de datos. Carga el CSV, normaliza continentes y guarda cambios.
-- **validaciones.py**: Funciones reutilizables para validar textos, números y continentes.
-- **operaciones.py**: Todas las operaciones de negocio (agregar, actualizar, buscar, filtrar, ordenar, estadísticas).
+- **main.py**: controla el flujo principal de ejecución y muestra el menú.
+- **datos.py**: administra la carga y guardado de información en el archivo CSV.
+- **validaciones.py**: contiene funciones reutilizables para validar textos, números y continentes.
+- **operaciones.py**: implementa las operaciones del sistema (altas, búsquedas, filtros, ordenamientos y estadísticas).
 
-### Enlaces obligatorios (completar antes de entregar)
+---
+
+## Enlaces obligatorios
 
 | Recurso | Enlace |
-|---------|--------|
-| Video demostrativo (10–15 min, público) | `[PENDIENTE — pegar URL de YouTube/Drive]` |
-| Informe PDF | `[PENDIENTE — enlace o archivo en raíz del repo]` |
+|----------|----------|
+| Video demostrativo (10–15 min) | [PENDIENTE] |
+| Informe PDF | [PENDIENTE] |
 | Repositorio GitHub | https://github.com/UTNTPOrganization/appPaisesIntegradorProgI2026 |
 
 ---
 
 ## Requisitos
 
-- Python 3.x instalado
-- No requiere librerías externas (solo módulos estándar)
+- Python 3.x
+- No requiere librerías externas
 
 ---
 
-## Instrucciones de ejecución
+## Ejecución del programa
 
 1. Clonar o descargar el repositorio.
 2. Abrir una terminal en la carpeta del proyecto.
@@ -67,13 +69,13 @@ Integrador/
 python main.py
 ```
 
-4. El programa carga automáticamente `paises.csv` desde el archivo CSV y muestra el menú principal.
+El programa cargará automáticamente los datos desde `paises.csv` y mostrará el menú principal.
 
 ---
 
 ## Menú principal
 
-```
+```text
 1. Agregar país
 2. Actualizar país
 3. Buscar país
@@ -83,9 +85,9 @@ python main.py
 0. Salir
 ```
 
-### Submenú de filtros (opción 4)
+### Submenú de filtros
 
-```
+```text
 1. Continente
 2. Rango de población
 3. Rango de superficie
@@ -93,40 +95,44 @@ python main.py
 
 ---
 
-## Ejemplos de entrada y salida
+## Ejemplos de uso
 
-### Carga inicial del CSV
+### Carga inicial
 
-```
+```text
 CSV cargado correctamente.
 ```
 
-### Agregar un país (opción 1)
+### Agregar país
 
-```
+```text
 Nombre del país: Uruguay
 Población: 3477000
 Superficie (km²): 176215
 Continente (América, Europa, Asia, África, Oceanía): america
+
 País agregado correctamente.
 ```
 
-### Buscar país (opción 3)
+### Buscar país
 
-```
+```text
 Ingrese nombre o parte del nombre a buscar: arg
 
 Resultados de la búsqueda:
-País: Argentina           | Continente: América    | Población:   45.376.763 hab. | Superficie:  2.780.400 km²
+
+País: Argentina           | Continente: América    | Población:   45.376.763 hab. | Superficie: 2.780.400 km²
 ```
 
-### Estadísticas (opción 6)
+### Estadísticas
 
-```
+```text
 --- ESTADISTICAS ---
+
 Mayor población:    Brasil (213.993.437 hab.)
 Menor población:    Alemania (83.149.300 hab.)
-Promedio población:  117.027.625,00 hab.
+
+Promedio población: 117.027.625,00 hab.
 Promedio superficie: 3.036.541,00 km²
 
 Cantidad por continente:
@@ -146,103 +152,76 @@ Japón,125800000,377975,Asia
 ```
 
 | Campo | Tipo | Descripción |
-|-------|------|-------------|
-| `nombre` | texto | Nombre del país |
-| `poblacion` | entero | Habitantes |
-| `superficie` | entero | km² |
-| `continente` | texto | América, Europa, Asia, África u Oceanía |
+|---------|---------|---------|
+| nombre | texto | Nombre del país |
+| poblacion | entero | Cantidad de habitantes |
+| superficie | entero | Superficie en km² |
+| continente | texto | América, Europa, Asia, África u Oceanía |
 
 ---
 
-## Cómo subir cambios a la rama `ramaRevision` con token classic
+## Flujo de trabajo con Git
 
-### 1. Crear un Personal Access Token (Classic) en GitHub
-
-1. Ir a **GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)**.
-2. Generar un token con permiso **`repo`** (acceso completo a repositorios privados/públicos).
-3. Copiar el token y guardarlo en un lugar seguro. **No compartirlo ni subirlo al repositorio.**
-
-### 2. Flujo de trabajo recomendado
-
-```bash
-# Ir a la carpeta del proyecto
-cd "ruta/a/Integrador"
-
-# Ver en qué rama estás
-git branch
-
-# Cambiar a la rama de revisión (si no estás ya en ella)
-git checkout ramaRevision
-
-# Ver qué archivos cambiaron
-git status
-
-# Agregar los archivos modificados
-git add Integrador.py paises.csv README.md Cambios_Integrador.md
-
-# Commit con convención PROY-N
-git commit -m "PROY-1: Descripción breve del cambio realizado"
-
-# Push: URL completa con usuario + token, y la rama al final
-git push https://USUARIO:TOKEN@github.com/alevanfof/appPaisesIntegradorProgI2026.git ramaRevision
-```
-
-> Reemplazar `USUARIO` por tu usuario de GitHub y `TOKEN` por el token classic generado.  
-> **En cada push** hay que escribir el comando completo (no se configura `origin` ni se guarda el token en el remoto).
-
-### 3. Convención de commits sugerida
-
-| Prefijo | Uso | Ejemplo |
-|---------|-----|---------|
-| `PROY-1` | Primera entrega / setup inicial | `PROY-1: Agregar estructura base del proyecto y CSV inicial` |
-| `PROY-2` | Funcionalidades del menú | `PROY-2: Implementar filtros por continente y población` |
-| `PROY-3` | Validaciones y manejo de errores | `PROY-3: Validar rangos mínimo/máximo en filtros` |
-| `PROY-4` | Documentación | `PROY-4: Agregar README con instrucciones de uso` |
-| `PROY-5` | Correcciones / revisión final | `PROY-5: Corregir dataset CSV y normalizar continentes` |
-
-**Formato general:**
-
-```
-PROY-N: Verbo en infinitivo + qué se hizo
-```
-
-Ejemplos:
-
-```bash
-git commit -m "PROY-1: Cargar proyecto integrador con menú principal"
-git commit -m "PROY-4: Documentar ejecución y estructura del repositorio"
-git commit -m "PROY-5: Mejorar validaciones y formato de salida en consola"
-```
-
-### 4. Verificar que el push fue exitoso
+### Verificar estado
 
 ```bash
 git status
-git log --oneline -3
 ```
 
-Si el push fue correcto, Git mostrará las ramas actualizadas sin errores de autenticación.
-
-**Comando de push (siempre el mismo formato):**
+### Agregar cambios
 
 ```bash
-git push https://USUARIO:TOKEN@github.com/alevanfof/appPaisesIntegradorProgI2026.git ramaRevision
+git add .
+```
+
+### Crear commit
+
+```bash
+git commit -m "PROY-N: Descripción del cambio"
+```
+
+### Enviar cambios
+
+```bash
+git push origin main
 ```
 
 ---
 
-## Checklist de entrega (consigna TPI)
+## Convención de commits
 
-- [ ] Repositorio **público** en GitHub
-- [ ] `main.py` ejecutable sin errores (junto con `datos.py`, `validaciones.py`, `operaciones.py`)
-- [ ] `paises.csv` incluido en el repositorio
-- [ ] `README.md` completo (integrantes, instrucciones, ejemplos, links)
-- [ ] `Informe_TPI_Paises.pdf` con carátula, índice, marco teórico, diagrama de flujo, capturas, conclusiones y bibliografía
-- [ ] Video de 10–15 min con ambos integrantes a cámara al inicio
-- [ ] Archivo `.zip` con código fuente modularizado + PDF del informe
+| Prefijo | Uso |
+|----------|----------|
+| PROY-1 | Implementación inicial |
+| PROY-2 | Nuevas funcionalidades |
+| PROY-3 | Validaciones y correcciones |
+| PROY-4 | Documentación |
+| PROY-5 | Revisión final |
+
+### Ejemplos
+
+```bash
+git commit -m "PROY-1: Crear estructura modular del proyecto"
+git commit -m "PROY-2: Implementar filtros por continente"
+git commit -m "PROY-3: Mejorar validaciones de entrada"
+git commit -m "PROY-4: Actualizar documentación"
+git commit -m "PROY-5: Corregir errores finales"
+```
+
+---
+
+## Checklist de entrega
+
+- [ ] Repositorio público en GitHub
+- [ ] Código modularizado (`main.py`, `datos.py`, `validaciones.py`, `operaciones.py`)
+- [ ] Archivo `paises.csv`
+- [ ] README completo
+- [ ] Informe PDF incluido
+- [ ] Video de demostración (10–15 minutos)
+- [ ] Archivo ZIP con código fuente e informe
 
 ---
 
 ## Licencia
 
-Proyecto académico — UTN TUPaD Programación 1.
+Proyecto académico desarrollado para la carrera **TUPaD — UTN** en el marco de la materia **Programación 1**.
