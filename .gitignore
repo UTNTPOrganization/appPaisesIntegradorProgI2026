@@ -5,3 +5,4 @@ Integrador Programación 1 2 C 2025.pdf
 __pycache__/
 Informe_TPI_Paises_backup.pdf
 .gitignore
+.venv
