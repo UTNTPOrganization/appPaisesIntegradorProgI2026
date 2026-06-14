@@ -46,8 +46,8 @@ Integrador/
 
 | Recurso | Enlace |
 |----------|----------|
-| Video demostrativo (10–15 min) | [PENDIENTE] |
-| Informe PDF | [PENDIENTE] |
+| Video demostrativo (10–15 min) | https://www.youtube.com/watch?v=DCn2WmIa1L4 |
+| Informe PDF | Informe_TPI_Paises.pdf |
 | Repositorio GitHub | https://github.com/UTNTPOrganization/appPaisesIntegradorProgI2026 |
 
 ---
